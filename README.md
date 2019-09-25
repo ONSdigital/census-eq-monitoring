@@ -10,14 +10,9 @@ Use an ENV name which follows the naming conventions here: https://cloud.google.
 
 Rename `terraform.tfvars.example` to `terraform.tfvars` and fill in the values. (Ask a team member for help).
 
-Create with `ENV=your-env ./create.sh`.
+Create with `EXISTING_PROJECT_ID=your-existing-project-id ENV=your-env ./create.sh`.
 
 Destroy with `ENV=your-env ./destroy.sh`
-
-If you are deploying to an existing environment, you can use the `EXISTING_PROJECT_ID` variable to define this:
-```
-EXISTING_PROJECT_ID=existing-project ENV=existing-project ./create.sh
-```
 
 Terraform state will by default be stored in the `census-eq-monitoring-tfstate` bucket, this bucket can be overridden by setting the `TERRAFORM_STATE_BUCKET` environment variable.
 
