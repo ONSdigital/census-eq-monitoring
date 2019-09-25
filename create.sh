@@ -23,7 +23,6 @@ terraform import google_project.project $EXISTING_PROJECT_ID
 terraform apply -auto-approve
 
 PROJECT_ID=$(terraform output google_project_id)
-REGION=$(terraform output region)
 
 echo
 echo "Successfully provisioned monitoring and alert policies"
