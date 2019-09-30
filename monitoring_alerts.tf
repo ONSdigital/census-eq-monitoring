@@ -34,7 +34,6 @@ resource "google_monitoring_alert_policy" "alert_500_errors_eq" {
         per_series_aligner   = "ALIGN_DELTA"
         cross_series_reducer = "REDUCE_SUM"
       }
-
     }
   }
 
@@ -71,7 +70,6 @@ resource "google_monitoring_alert_policy" "alert_401_errors_eq" {
         per_series_aligner   = "ALIGN_DELTA"
         cross_series_reducer = "REDUCE_SUM"
       }
-
     }
   }
 
@@ -108,7 +106,6 @@ resource "google_monitoring_alert_policy" "alert_403_errors_eq" {
         per_series_aligner   = "ALIGN_DELTA"
         cross_series_reducer = "REDUCE_SUM"
       }
-
     }
   }
 

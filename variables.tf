@@ -14,6 +14,10 @@ variable "env" {
   description = "Environment name - used as the project name in GCP"
 }
 
+variable "project_id" {
+  description = "Full GCP project id"
+}
+
 variable "stackdriver_workspace" {
   description = "Stackdriver Workspace Hosting Project ID"
 }
@@ -35,4 +39,3 @@ variable "project_team" {
   description = "The team this project belongs to, for billing and reporting purposes, etc"
   default     = "eq"
 }
-
