@@ -18,7 +18,6 @@ Set up a Stackdriver Workspace:
 
 ## Development
 Logging metric based monitoring and alert policies must first be provisioned to your environment using the terraform scripts in [https://github.com/ONSdigital/census-eq-terraform](census-eq-terraform).
-Use an ENV name which follows the naming conventions here: https://cloud.google.com/storage/docs/naming.
 
 Rename `terraform.tfvars.example` to `terraform.tfvars` and fill in the values. (Ask a team member for help).
 
