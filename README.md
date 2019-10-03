@@ -2,7 +2,7 @@
 This repository contains terraform scripts for provisioning Census EQ Stackdriver Monitoring and Alert Policies to Google Cloud Platform.
 
 ## Prerequisites
-Provision an environment following the instructions found in the census-eq-terraform [README](https://github.com/ONSdigital/census-eq-terraform/edit/master/README.md).
+Provision an environment following the instructions found in the census-eq-terraform [README](https://github.com/ONSdigital/census-eq-terraform/blob/master/README.md).
 
 Set up a Stackdriver Workspace:
 1. Visit the [Stackdriver Console](https://console.cloud.google.com/monitoring).
