@@ -21,7 +21,7 @@ Logging metric based monitoring and alert policies must first be provisioned to 
 
 Rename `terraform.tfvars.example` to `terraform.tfvars` and fill in the values. (Ask a team member for help).
 
-Create with `EXISTING_PROJECT_ID=your-existing-project-id ENV=your-env ./create.sh`.
+Create with `ENV=your-env ./create.sh`.
 
 Destroy with `ENV=your-env ./destroy.sh`
 
