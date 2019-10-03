@@ -1,0 +1,7 @@
+env=""
+project_id=""
+gcp_billing_account="010C5C-D2E6F2-FA1F92"
+gcp_folder_id="979069919925"
+stackdriver_workspace=""
+slack_channel_name=""
+slack_auth_token=""
