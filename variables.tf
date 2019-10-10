@@ -10,10 +10,6 @@ variable "gcp_folder_id" {
   description = "The numeric ID of the folder this project belongs to"
 }
 
-variable "env" {
-  description = "Environment name - used as the project name in GCP"
-}
-
 variable "project_id" {
   description = "Full GCP project id"
 }
