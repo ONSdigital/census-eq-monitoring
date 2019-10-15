@@ -21,9 +21,9 @@ Logging metric based monitoring and alert policies must first be provisioned to 
 
 Rename `terraform.tfvars.example` to `terraform.tfvars` and fill in the values. (Ask a team member for help).
 
-Create with `ENV=your-env ./create.sh`.
+Create with `EXISTING_PROJECT_ID=your-project-id ./create.sh`.
 
-Destroy with `ENV=your-env ./destroy.sh`
+Destroy with `EXISTING_PROJECT_ID=your-project-id ./destroy.sh`
 
 Terraform state will by default be stored in the `census-eq-monitoring-tfstate` bucket, this bucket can be overridden by setting the `TERRAFORM_STATE_BUCKET` environment variable.
 
