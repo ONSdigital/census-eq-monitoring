@@ -48,13 +48,20 @@ resource "google_monitoring_alert_policy" "alert_uptime_errors_eq" {
     display_name = "Uptime health check"
 
     condition_threshold {
-      filter          = "metric.type=\"monitoring.googleapis.com/uptime_check/check_passed\" AND resource.type=\"uptime_url\" AND metric.label.check_id=\"${basename(google_monitoring_uptime_check_config.http.id)}\""
+      filter          = "metric.type=\"monitoring.googleapis.com/uptime_check/check_passed\" AND resource.type=\"uptime_url\" AND metric.label=\"check_id\"=\"${basename(google_monitoring_uptime_check_config.http.id)}\""
       duration        = "60s"
       comparison      = "COMPARISON_GT"
       threshold_value = 1.0
 
       trigger {
         count = 1
+      }
+
+      aggregations {
+        alignment_period = "1200s"
+        cross_series_reducer = "REDUCE_COUNT_FALSE"
+        group_by_fields = ["resource.*"]
+        per_series_aligner = "ALIGN_NEXT_OLDER"
       }
     }
   }
