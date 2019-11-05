@@ -35,6 +35,31 @@ resource "google_monitoring_uptime_check_config" "http" {
   }
 }
 
+resource "google_monitoring_alert_policy" "alert_uptime_errors_eq" {
+  project      = "${var.stackdriver_workspace}"
+  display_name = "Uptime health check"
+  combiner     = "OR"
+
+  conditions {
+    display_name = "Uptime health check"
+
+    condition_threshold {
+      filter          = "metric.type=\"monitoring.googleapis.com/uptime_check/check_passed\" resource.type=\"uptime_url\" metric.label.\"check_id\"=\"${basename(google_monitoring_uptime_check_config.http.id)}\""
+      duration        = "60s"
+      comparison      = "COMPARISON_GT"
+      threshold_value = 1.0
+
+      trigger {
+        count = 1
+      }
+    }
+  }
+
+  notification_channels = [
+    "${google_monitoring_notification_channel.slack_alert.name}",
+  ]
+}
+
 resource "google_monitoring_alert_policy" "alert_500_errors_eq" {
   count        = "${var.stackdriver_workspace == "" ? 0 : 1}"
   project      = "${var.stackdriver_workspace}"
