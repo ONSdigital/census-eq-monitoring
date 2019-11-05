@@ -58,10 +58,10 @@ resource "google_monitoring_alert_policy" "alert_uptime_errors_eq" {
       }
 
       aggregations {
-        alignment_period = "1200s"
+        alignment_period     = "1200s"
         cross_series_reducer = "REDUCE_COUNT_FALSE"
-        group_by_fields = ["resource.*"]
-        per_series_aligner = "ALIGN_NEXT_OLDER"
+        group_by_fields      = ["resource.*"]
+        per_series_aligner   = "ALIGN_NEXT_OLDER"
       }
     }
   }
