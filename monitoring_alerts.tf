@@ -11,6 +11,7 @@ resource "google_monitoring_notification_channel" "slack_alert" {
 }
 
 resource "google_monitoring_uptime_check_config" "http" {
+  project      = "${var.stackdriver_workspace}"
   display_name = "${var.uptime_check_host}"
   timeout      = "5s"
   period       = "60s"
@@ -25,7 +26,7 @@ resource "google_monitoring_uptime_check_config" "http" {
     type = "uptime_url"
 
     labels = {
-      project_id = "${var.project_id}"
+      project_id = "${var.stackdriver_workspace}"
       host       = "${var.uptime_check_host}"
     }
   }
