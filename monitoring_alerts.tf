@@ -26,8 +26,7 @@ resource "google_monitoring_uptime_check_config" "http" {
     type = "uptime_url"
 
     labels = {
-      project_id = "${var.stackdriver_workspace}"
-      host       = "${var.uptime_check_host}"
+      host = "${var.uptime_check_host}"
     }
   }
 
