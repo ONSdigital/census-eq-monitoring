@@ -10,6 +10,31 @@ resource "google_monitoring_notification_channel" "slack_alert" {
   }
 }
 
+resource "google_monitoring_uptime_check_config" "http" {
+  display_name = "${var.uptime_check_host}"
+  timeout      = "5s"
+  period       = "60s"
+
+  http_check {
+    path    = "/status"
+    port    = 443
+    use_ssl = true
+  }
+
+  monitored_resource {
+    type = "uptime_url"
+
+    labels = {
+      project_id = "${var.project_id}"
+      host       = "${var.uptime_check_host}"
+    }
+  }
+
+  content_matchers {
+    content = "OK"
+  }
+}
+
 resource "google_monitoring_alert_policy" "alert_500_errors_eq" {
   count        = "${var.stackdriver_workspace == "" ? 0 : 1}"
   project      = "${var.stackdriver_workspace}"

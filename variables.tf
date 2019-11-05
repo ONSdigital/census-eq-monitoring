@@ -35,3 +35,7 @@ variable "project_team" {
   description = "The team this project belongs to, for billing and reporting purposes, etc"
   default     = "eq"
 }
+
+variable "uptime_check_host" {
+  description = "The host to use for the uptime check (without protocol) e.g. eq.census.gov.uk"
+}
