@@ -81,7 +81,7 @@ resource "google_monitoring_alert_policy" "alert_500_errors_eq" {
     display_name = "500 Errors on EQ"
 
     condition_threshold {
-      filter          = "metric.type = \"logging.googleapis.com/user/eq_500_errors\" AND resource.type = \"l7_lb_rule\""
+      filter          = "metric.type = \"logging.googleapis.com/user/eq_500_errors\" AND resource.type = \"http_load_balancer\""
       duration        = "60s"
       comparison      = "COMPARISON_GT"
       threshold_value = 0
