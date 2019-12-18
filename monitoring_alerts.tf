@@ -1,18 +1,18 @@
 resource "google_monitoring_notification_channel" "slack_alert" {
-  count        = "${var.stackdriver_workspace == "" ? 0 : 1}"
-  project      = "${var.stackdriver_workspace}"
+  count        = var.stackdriver_workspace == "" ? 0 : 1
+  project      = var.stackdriver_workspace
   display_name = "#${var.slack_channel_name}"
   type         = "slack"
 
   labels = {
-    auth_token   = "${var.slack_auth_token}"
+    auth_token   = var.slack_auth_token
     channel_name = "#${var.slack_channel_name}"
   }
 }
 
 resource "google_monitoring_uptime_check_config" "http" {
-  project      = "${var.stackdriver_workspace}"
-  display_name = "${var.uptime_check_host}"
+  project      = var.stackdriver_workspace
+  display_name = var.uptime_check_host
   timeout      = "5s"
   period       = "60s"
 
@@ -26,7 +26,7 @@ resource "google_monitoring_uptime_check_config" "http" {
     type = "uptime_url"
 
     labels = {
-      host = "${var.uptime_check_host}"
+      host = var.uptime_check_host
     }
   }
 
@@ -40,7 +40,7 @@ resource "google_monitoring_uptime_check_config" "http" {
 }
 
 resource "google_monitoring_alert_policy" "alert_uptime_errors_eq" {
-  project      = "${var.stackdriver_workspace}"
+  project      = var.stackdriver_workspace
   display_name = "Uptime health check"
   combiner     = "OR"
 
@@ -51,7 +51,7 @@ resource "google_monitoring_alert_policy" "alert_uptime_errors_eq" {
       filter          = "metric.type=\"monitoring.googleapis.com/uptime_check/check_passed\" AND resource.type=\"uptime_url\" AND metric.label.check_id=\"${basename(google_monitoring_uptime_check_config.http.id)}\""
       duration        = "60s"
       comparison      = "COMPARISON_GT"
-      threshold_value = 1.0
+      threshold_value = 1
 
       trigger {
         count = 1
@@ -67,13 +67,13 @@ resource "google_monitoring_alert_policy" "alert_uptime_errors_eq" {
   }
 
   notification_channels = [
-    "${google_monitoring_notification_channel.slack_alert.name}",
+    google_monitoring_notification_channel.slack_alert[0].name,
   ]
 }
 
 resource "google_monitoring_alert_policy" "alert_500_errors_eq" {
-  count        = "${var.stackdriver_workspace == "" ? 0 : 1}"
-  project      = "${var.stackdriver_workspace}"
+  count        = var.stackdriver_workspace == "" ? 0 : 1
+  project      = var.stackdriver_workspace
   display_name = "500 Errors on EQ"
   combiner     = "OR"
 
@@ -103,6 +103,6 @@ resource "google_monitoring_alert_policy" "alert_500_errors_eq" {
   }
 
   notification_channels = [
-    "${google_monitoring_notification_channel.slack_alert.name}",
+    google_monitoring_notification_channel.slack_alert[0].name,
   ]
 }
