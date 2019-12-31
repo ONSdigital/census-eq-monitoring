@@ -1,0 +1,19 @@
+platform: linux
+inputs:
+  - name: terraform-repo
+run:
+  path: bash
+  args:
+    - -exc
+    - |
+      cat >$GOOGLE_APPLICATION_CREDENTIALS <<EOL
+      $SERVICE_ACCOUNT_JSON
+      EOL
+
+      gcloud auth activate-service-account --key-file $GOOGLE_APPLICATION_CREDENTIALS
+
+      cd terraform-repo
+
+      tfenv use "$(< .terraform-version)"
+
+      ./create.sh
