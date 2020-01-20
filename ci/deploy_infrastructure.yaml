@@ -16,4 +16,4 @@ run:
 
       cd census-eq-monitoring
 
-      ./create.sh
+      ./scripts/create.sh
