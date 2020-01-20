@@ -1,6 +1,6 @@
 platform: linux
 inputs:
-  - name: terraform-repo
+  - name: census-eq-monitoring
 params:
   GOOGLE_APPLICATION_CREDENTIALS: '/root/gcloud-service-key.json'
   EXISTING_PROJECT_ID:
@@ -14,6 +14,6 @@ run:
       ((gcp.service_account_json))
       EOL
 
-      cd terraform-repo
+      cd census-eq-monitoring
 
       ./create.sh
